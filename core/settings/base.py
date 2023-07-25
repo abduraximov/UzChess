@@ -48,12 +48,14 @@ DJANGO_APPS = [
 CUSTOM_APPS = [
     "apps.common",
     "apps.course",
+    "apps.user",
 ]
 
 THIRD_PARTY_APPS = [
     "rest_framework",
     "drf_yasg",
     "corsheaders",
+    "ckeditor",
 ]
 
 REST_FRAMEWORK = {
@@ -155,6 +157,8 @@ STATICFILES_DIRS = (BASE_DIR / "staticfiles",)
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+AUTH_USER_MODEL = 'user.BaseUser'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -167,6 +171,14 @@ CACHES = {
         "LOCATION": f"{env.str('REDIS_URL', 'redis://localhost:6379/0')}",
         "KEY_PREFIX": "boilerplate",  # todo: you must change this with your project name or something else
     }
+}
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 800,
+    },
 }
 
 # CELERY CONFIGURATION
